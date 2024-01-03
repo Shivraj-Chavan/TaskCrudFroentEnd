@@ -8,11 +8,12 @@ export default function Read() {
     const [error,setError]=useState("")
     async function getAllData(){
 
-        const response=await fetch("http://localhost:4000/")
+        const response=await fetch(process.env.REACT_APP_API_LINK)
         const result=await response.json()
 
         if(!response.ok){
-            setError(response.error)
+            setError(`Error: ${result.message}`); // Adjust this based on your API response structure
+
         }
         if(response.ok){
             setError("")
@@ -20,7 +21,7 @@ export default function Read() {
         }
     } 
     const handelDelete=async(id)=>{
-        const response=await fetch(`http://localhost:4000/${id}`,{
+        const response=await fetch(`${process.env.REACT_APP_API_LINK}${id}`,{
             method:"DELETE"
         })
         const result=await response.json();

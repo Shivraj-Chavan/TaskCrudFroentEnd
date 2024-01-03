@@ -11,7 +11,8 @@ export default function Create() {
   const handelSubmit=async(e)=>{
     e.preventDefault()
     console.log("chck 1");
-    const response=await fetch("http://localhost:4000/",{
+    console.log(process.env.REACT_APP_API_LINK)
+    const response=await fetch(process.env.REACT_APP_API_LINK,{
       method:"POST",
       body: JSON.stringify({ task }), 
       headers:{

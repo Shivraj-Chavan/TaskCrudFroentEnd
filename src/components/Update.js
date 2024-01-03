@@ -26,7 +26,7 @@ export default function Update() {
 
   const handelUpdate = async (e) => {
     e.preventDefault()
-    const response = await fetch(`http://localhost:4000/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_LINK}${id}`, {
       method: "PATCH",
       body: JSON.stringify({ task }), 
       headers: {
