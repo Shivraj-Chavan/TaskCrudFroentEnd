@@ -11,7 +11,7 @@ function App() {
             <Route path="/" element={<Create/>}/>
             <Route path="/:id" element={<Update/>}/>
           </Routes>
-          <Read/>
+        
         </BrowserRouter>
     </div>
   );

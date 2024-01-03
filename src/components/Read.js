@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
-export default function Read() {
+export default function Read(props) {
 
     const [data,setData]=useState([])
     const [error,setError]=useState("")
@@ -36,10 +36,14 @@ export default function Read() {
             getAllData()
         },3000)
     }
-
+if(props.add){
+      getAllData()
+      props.setAdd(false)
+}
     useEffect(()=>{
         getAllData()
-    })
+
+    },[])
     let srno=1;
     
     return (
@@ -62,8 +66,8 @@ export default function Read() {
                         <td>{srno++}</td>
                         <td align='start'><b>{ele.task}</b></td>
                             
-                        <td><Link to={`/${ele._id}`} class="text-warning  mx-4 "><EditNoteIcon/> </Link>
-                            <a onClick={()=>{handelDelete(ele._id)}} class="text-danger"> <DeleteIcon/> </a>
+                        <td><Link to={`/${ele._id}`} className="text-warning  mx-4 "><EditNoteIcon/> </Link>
+                            <a onClick={()=>{handelDelete(ele._id)}} className="text-danger"> <DeleteIcon/> </a>
                         </td>
                     
                 </tr>

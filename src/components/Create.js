@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Read from './Read';
 
 export default function Create() {
 
   const [task, setTask] = useState("");
-  const [error,setError]=useState("")
+  const [error,setError]=useState("");
+  const [add,setAdd]=useState(false)
 
   const navigate=useNavigate()
 
   const handelSubmit=async(e)=>{
     e.preventDefault()
-    console.log("chck 1");
-    console.log(process.env.REACT_APP_API_LINK)
     const response=await fetch(process.env.REACT_APP_API_LINK,{
       method:"POST",
       body: JSON.stringify({ task }), 
@@ -20,7 +20,6 @@ export default function Create() {
       }
     })
     
-    console.log("chck 2");
     const result=await response.json();
     if(!response.ok){
       console.log(result.error);
@@ -30,6 +29,7 @@ export default function Create() {
       console.log(result);
 setError("")
 setTask("")
+setAdd(true)
     }
   }
   return (
@@ -44,6 +44,7 @@ setTask("")
         
         </div>
       </form>
+      <Read add={add} setAdd={setAdd}/>
     </div>
   )
 }
